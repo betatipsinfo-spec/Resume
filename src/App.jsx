@@ -7,7 +7,9 @@ import {
     Trash2, 
     Download, 
     Loader2,
-    Cloud
+    Cloud,
+    Briefcase,
+    FileText
 } from 'lucide-react';
 import EditorPanel from './components/EditorPanel';
 import PreviewPanel from './components/PreviewPanel';
@@ -85,9 +87,18 @@ export default function App() {
     };
 
     // High Density PDF export compilation
-    const triggerActualDownload = () => {
+    const triggerActualDownload = async () => {
         const element = previewRef.current;
         if (!element) return;
+
+        // Fetch fresh session to prevent state synchronization race conditions
+        const { data: { session: freshSession } } = await supabase.auth.getSession();
+        const activeSession = freshSession || session;
+        if (!activeSession) {
+            console.error('Failed to archive PDF: Unauthenticated session');
+            setIsGenerating(false);
+            return;
+        }
 
         const fullname = formData.fullname.trim() || 'Resume';
         const cleanFilename = `${fullname.toLowerCase().replace(/\s+/g, '_')}_resume.pdf`;
@@ -128,7 +139,7 @@ export default function App() {
                     // 2. Silently archive binary PDF in Supabase Storage under user_id folder
                     try {
                         const fileId = currentResumeId || `standalone_${Date.now()}`;
-                        const filePath = `${session.user.id}/${fileId}.pdf`;
+                        const filePath = `${activeSession.user.id}/${fileId}.pdf`;
 
                         const { data, error: uploadError } = await supabase.storage
                             .from('resumes_pdf')
@@ -244,14 +255,28 @@ export default function App() {
                             onClick={() => switchTemplate('attractive')}
                         >
                             <Palette size={16} />
-                            <span>Attractive Blue</span>
+                            <span>Attractive</span>
                         </button>
                         <button 
                             className={`toggle-btn ${activeTemplate === 'plain' ? 'active' : ''}`}
                             onClick={() => switchTemplate('plain')}
                         >
                             <AlignLeft size={16} />
-                            <span>Plain Classic</span>
+                            <span>Classic</span>
+                        </button>
+                        <button 
+                            className={`toggle-btn ${activeTemplate === 'minimalist' ? 'active' : ''}`}
+                            onClick={() => switchTemplate('minimalist')}
+                        >
+                            <FileText size={16} />
+                            <span>Minimalist</span>
+                        </button>
+                        <button 
+                            className={`toggle-btn ${activeTemplate === 'executive' ? 'active' : ''}`}
+                            onClick={() => switchTemplate('executive')}
+                        >
+                            <Briefcase size={16} />
+                            <span>Executive</span>
                         </button>
                     </div>
                 </div>

@@ -1278,3 +1278,11 @@ body {
     box-shadow: 0 2px 4px rgba(34, 197, 94, 0.3);
 }
 
+/* Premium Resume Layout Extensions */
+.template-minimalist, .template-executive {
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: none;
+}
+
+

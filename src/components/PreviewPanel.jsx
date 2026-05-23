@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Eye } from 'lucide-react';
 import AttractiveTemplate from './templates/AttractiveTemplate';
 import PlainTemplate from './templates/PlainTemplate';
+import MinimalistTemplate from './templates/MinimalistTemplate';
+import ExecutiveTemplate from './templates/ExecutiveTemplate';
 
 export default function PreviewPanel({ formData, activeTemplate, previewRef }) {
     const viewportRef = useRef(null);
@@ -90,8 +92,12 @@ export default function PreviewPanel({ formData, activeTemplate, previewRef }) {
                         >
                             {activeTemplate === 'attractive' ? (
                                 <AttractiveTemplate data={formData} />
-                            ) : (
+                            ) : activeTemplate === 'plain' ? (
                                 <PlainTemplate data={formData} />
+                            ) : activeTemplate === 'minimalist' ? (
+                                <MinimalistTemplate data={formData} />
+                            ) : (
+                                <ExecutiveTemplate data={formData} />
                             )}
                         </div>
                     </div>
