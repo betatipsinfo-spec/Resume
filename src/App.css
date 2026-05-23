@@ -1,0 +1,1280 @@
+/* ==========================================================================
+   DESIGN TOKENS & RESET
+   ========================================================================== */
+:root {
+    --primary-color: #1e40af; /* Deep Royal Blue */
+    --primary-light: #3b82f6; /* Vibrant Accent Blue */
+    --primary-hover: #1d4ed8;
+    --primary-bg: #eff6ff;
+    
+    --bg-app: #f8fafc; /* Slate 50 */
+    --bg-card: #ffffff;
+    --text-main: #0f172a; /* Slate 900 */
+    --text-muted: #475569; /* Slate 600 */
+    --text-light: #94a3b8; /* Slate 400 */
+    
+    --border-color: #e2e8f0; /* Slate 200 */
+    --border-focus: #3b82f6;
+    
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+/* ==========================================================================
+   APP LAYOUT & HEADER
+   ========================================================================== */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-card);
+    padding: 0.75rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    z-index: 50;
+    flex-shrink: 0;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+.logo-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.logo-text h1 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    background: linear-gradient(to right, var(--primary-color), var(--primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.logo-text span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Template Switcher Styling */
+.template-selector {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #f1f5f9;
+    padding: 0.375rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+}
+
+.selector-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding-left: 0.75rem;
+}
+
+.toggle-group {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background-color: transparent;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.toggle-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.toggle-btn:hover {
+    color: var(--primary-light);
+}
+
+.toggle-btn.active {
+    background-color: var(--bg-card);
+    color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Global Buttons styling */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(30, 64, 175, 0.3);
+}
+
+.btn-secondary {
+    background-color: var(--primary-bg);
+    color: var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: #dbeafe;
+}
+
+.btn-danger {
+    background-color: #fee2e2;
+    color: #ef4444;
+}
+
+.btn-danger:hover {
+    background-color: #fecaca;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1.5px dashed var(--border-color);
+    color: var(--primary-color);
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.btn-outline:hover {
+    border-color: var(--primary-light);
+    background-color: var(--primary-bg);
+}
+
+.btn-remove {
+    padding: 0.35rem;
+    background-color: #fee2e2;
+    color: #ef4444;
+    border-radius: var(--radius-sm);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-remove svg {
+    width: 14px;
+    height: 14px;
+}
+
+.btn-remove:hover {
+    background-color: #fecaca;
+}
+
+/* ==========================================================================
+   WORKSPACE PANELS
+   ========================================================================== */
+.workspace {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    width: 100%;
+}
+
+.editor-panel {
+    width: 38%;
+    min-width: 400px;
+    background-color: var(--bg-card);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* visual template picker hover styles */
+.template-card {
+    transition: all 0.2s ease !important;
+}
+.template-card:hover {
+    border-color: var(--primary-light) !important;
+    background-color: var(--primary-bg) !important;
+    transform: translateY(-1px);
+}
+.template-card.active {
+    border-color: var(--primary-light) !important;
+    background-color: var(--primary-bg) !important;
+}
+
+.preview-panel {
+    flex: 1;
+    background-color: #cbd5e1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+}
+
+.panel-header {
+    padding: 1.25rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-card);
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-header h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 0.15rem 0;
+}
+
+.panel-header h2 svg {
+    color: var(--primary-light);
+    width: 18px;
+    height: 18px;
+}
+
+.panel-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   ACCORDION & DYNAMIC FORM FIELDS
+   ========================================================================== */
+.accordion-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+
+.accordion-item {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+    background-color: var(--bg-card);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-normal);
+}
+
+.accordion-item.active {
+    border-color: var(--primary-light);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.05);
+}
+
+.accordion-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.15rem 1.5rem;
+    cursor: pointer;
+    background-color: var(--bg-card);
+    user-select: none;
+}
+
+.trigger-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+.trigger-title svg {
+    width: 18px;
+    height: 18px;
+    color: var(--text-muted);
+}
+
+.accordion-item.active .trigger-title svg {
+    color: var(--primary-color);
+}
+
+.chevron {
+    width: 18px;
+    height: 18px;
+    color: var(--text-light);
+    transition: transform var(--transition-normal);
+}
+
+.accordion-item.active .chevron {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    display: none;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    border-top: 1px solid transparent;
+}
+
+.accordion-item.active .accordion-content {
+    display: block;
+    border-top-color: var(--border-color);
+}
+
+/* Form Styles */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.col-span-2 {
+    grid-column: span 2;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-top: 0.75rem;
+}
+
+.form-group label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.form-group input, 
+.form-group textarea, 
+.form-group select {
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    font-family: inherit;
+    font-size: 0.875rem;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background-color: var(--bg-card);
+    transition: var(--transition-fast);
+}
+
+.form-group input:focus, 
+.form-group textarea:focus, 
+.form-group select:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Repeater Items */
+.repeater-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.repeater-item {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    background-color: #fafafa;
+    position: relative;
+    animation: fadeIn 0.3s ease;
+}
+
+.repeater-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.repeater-index {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--text-light);
+    text-transform: uppercase;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   LIVE PREVIEW CONTAINER
+   ========================================================================== */
+.preview-viewport {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2.5rem;
+    background-color: #cbd5e1; /* Slate 300 */
+}
+
+/* Base Letter/A4 layout container */
+#resume-preview {
+    width: 794px; /* Standard A4 Width at 96 DPI */
+    min-height: 1123px; /* Standard A4 Height */
+    background-color: #ffffff;
+    box-shadow: var(--shadow-lg);
+    padding: 3rem;
+    box-sizing: border-box;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Scale and styling for larger screens */
+@media (max-width: 1400px) {
+    .preview-viewport {
+        padding: 1.5rem;
+    }
+}
+
+/* Responsive columns */
+@media (max-width: 1024px) {
+    .workspace {
+        flex-direction: column;
+        overflow: auto;
+    }
+    .editor-panel {
+        width: 100%;
+        min-width: unset;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .preview-viewport {
+        padding: 1rem;
+        background-color: #f1f5f9;
+    }
+    #resume-preview {
+        width: 100%;
+        min-height: unset;
+        aspect-ratio: unset;
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* ==========================================================================
+   RESUME TEMPLATE 1: ATTRACTIVE (Modern, Blue Theme, 2-Column Split)
+   ========================================================================== */
+.template-attractive {
+    font-family: 'Inter', sans-serif;
+    color: #1e293b; /* Slate 800 */
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header style for attractive */
+.template-attractive .resume-header {
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.template-attractive .header-left h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 0.25rem;
+    text-transform: capitalize;
+}
+
+.template-attractive .header-left .title-badge {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Split Columns Structure */
+.template-attractive .resume-body {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 2rem;
+    flex: 1;
+}
+
+/* Left Column Styling */
+.template-attractive .resume-aside {
+    border-right: 1px solid var(--border-color);
+    padding-right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Right Column Styling */
+.template-attractive .resume-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Section Styling in attractive */
+.template-attractive .resume-sec-title {
+    font-size: 0.875rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.35rem;
+}
+
+.template-attractive .resume-sec-title svg {
+    width: 14px;
+    height: 14px;
+    color: var(--primary-light);
+}
+
+/* Contacts layout */
+.template-attractive .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.template-attractive .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #475569;
+}
+
+.template-attractive .contact-item svg {
+    width: 14px;
+    height: 14px;
+    color: var(--primary-light);
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+}
+
+/* Skills display style (Attractive capsule labels + bars) */
+.template-attractive .skills-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.template-attractive .skill-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.template-attractive .skill-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.template-attractive .skill-bar-outer {
+    height: 6px;
+    background-color: #f1f5f9;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.template-attractive .skill-bar-inner {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 3px;
+}
+
+/* Timeline Experience details */
+.template-attractive .summary-text {
+    font-size: 0.85rem;
+    color: #334155;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.template-attractive .experience-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.template-attractive .timeline-item {
+    position: relative;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--primary-bg);
+}
+
+.template-attractive .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+    border: 2px solid white;
+}
+
+.template-attractive .item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.25rem;
+}
+
+.template-attractive .item-role {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.template-attractive .item-date {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: var(--primary-bg);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+}
+
+.template-attractive .item-company-loc {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 0.35rem;
+}
+
+.template-attractive .item-description {
+    font-size: 0.8rem;
+    color: #334155;
+    line-height: 1.5;
+    white-space: pre-line;
+}
+
+/* Project and cert structures */
+.template-attractive .project-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.template-attractive .project-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.template-attractive .project-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.template-attractive .project-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.template-attractive .project-link {
+    font-size: 0.75rem;
+    color: var(--primary-light);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.template-attractive .project-link:hover {
+    text-decoration: underline;
+}
+
+.template-attractive .project-tech {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 0.25rem;
+}
+
+.template-attractive .project-desc {
+    font-size: 0.8rem;
+    color: #334155;
+    line-height: 1.5;
+    white-space: pre-line;
+}
+
+.template-attractive .extra-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.template-attractive .extra-item {
+    font-size: 0.8rem;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.template-attractive .extra-item::before {
+    content: "•";
+    color: var(--primary-light);
+    font-weight: bold;
+}
+
+.template-attractive .languages-tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.template-attractive .language-tag {
+    font-size: 0.75rem;
+    background-color: #f1f5f9;
+    color: #334155;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   RESUME TEMPLATE 2: PLAIN (Minimalist, Monochromatic, Elegant Lora Font)
+   ========================================================================== */
+.template-plain {
+    font-family: 'Lora', Georgia, serif;
+    color: #111111;
+    line-height: 1.45;
+}
+
+/* Minimalist Header */
+.template-plain .resume-header {
+    text-align: center;
+    border-bottom: 2px solid #111111;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.template-plain .resume-header h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #111111;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+}
+
+.template-plain .resume-header .title-badge {
+    font-size: 1rem;
+    font-weight: 500;
+    font-style: italic;
+    color: #444444;
+    margin-bottom: 0.75rem;
+    text-transform: capitalize;
+}
+
+.template-plain .contact-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    font-size: 0.8rem;
+    color: #333333;
+}
+
+.template-plain .contact-bar span {
+    display: inline-flex;
+    align-items: center;
+}
+
+.template-plain .contact-divider {
+    color: #cccccc;
+}
+
+/* Plain Content Flow */
+.template-plain .resume-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.template-plain .resume-sec-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #111111;
+    border-bottom: 1px solid #222222;
+    padding-bottom: 0.2rem;
+    margin-bottom: 0.75rem;
+}
+
+.template-plain .summary-text {
+    font-size: 0.85rem;
+    color: #222222;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+/* Professional List item structures */
+.template-plain .experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.template-plain .plain-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.template-plain .item-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.85rem;
+}
+
+.template-plain .item-title-org {
+    font-weight: 700;
+    color: #111111;
+}
+
+.template-plain .item-title-org span {
+    font-weight: 400;
+    font-style: italic;
+    color: #333333;
+}
+
+.template-plain .item-date-loc {
+    font-weight: 400;
+    color: #333333;
+    font-style: italic;
+}
+
+.template-plain .item-description {
+    font-size: 0.825rem;
+    color: #222222;
+    line-height: 1.45;
+    white-space: pre-line;
+    padding-left: 0.5rem;
+}
+
+.template-plain .skills-text-list {
+    font-size: 0.85rem;
+    color: #222222;
+    line-height: 1.5;
+}
+
+.template-plain .skills-text-list strong {
+    font-weight: 700;
+}
+
+.template-plain .plain-projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.template-plain .plain-project-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.template-plain .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.85rem;
+}
+
+.template-plain .project-title-tech {
+    font-weight: 700;
+}
+
+.template-plain .project-title-tech span {
+    font-weight: 400;
+    font-style: italic;
+    color: #555555;
+}
+
+.template-plain .project-link-label {
+    font-style: italic;
+    color: #111111;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.template-plain .project-link-label:hover {
+    text-decoration: underline;
+}
+
+.template-plain .project-description {
+    font-size: 0.825rem;
+    color: #222222;
+    line-height: 1.45;
+    white-space: pre-line;
+    padding-left: 0.5rem;
+}
+
+.template-plain .plain-extra-row {
+    font-size: 0.85rem;
+    color: #222222;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   EXPORT PDF / PRINT SPECIFIC ADJUSTMENTS
+   ========================================================================== */
+@media print {
+    body {
+        background-color: #ffffff;
+        color: #000000;
+    }
+    
+    .app-container,
+    .app-header,
+    .editor-panel,
+    .panel-header,
+    .preview-panel > .panel-header,
+    .preview-viewport {
+        display: none !important;
+    }
+    
+    #resume-preview {
+        width: 100% !important;
+        height: auto !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background-color: transparent !important;
+    }
+}
+
+/* ==========================================================================
+   SUPABASE EMAIL AUTHENTICATION STYLES (Glassmorphic blue/white modal)
+   ========================================================================== */
+.auth-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 23, 42, 0.4); /* Slate 900 translucent */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.25s ease-out;
+}
+
+.auth-modal-card {
+    width: 400px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    position: relative;
+    animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-close-btn {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-light);
+    transition: var(--transition-fast);
+    padding: 0.25rem;
+    border-radius: 50%;
+}
+
+.auth-close-btn:hover {
+    color: #ef4444;
+    background-color: #fee2e2;
+}
+
+.auth-modal-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.auth-modal-header h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 0.35rem;
+}
+
+.auth-modal-header p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.auth-notice-bar {
+    background-color: var(--primary-bg);
+    border: 1px solid #dbeafe;
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.auth-notice-bar svg {
+    flex-shrink: 0;
+    color: var(--primary-light);
+    margin-top: 0.1rem;
+}
+
+.auth-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #f1f5f9;
+    border-radius: var(--radius-md);
+    padding: 0.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.auth-tab {
+    border: none;
+    background: transparent;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.auth-tab.active {
+    background-color: #ffffff;
+    color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.auth-error-alert {
+    background-color: #fee2e2;
+    border: 1px solid #fecaca;
+    color: #ef4444;
+    padding: 0.65rem 0.85rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: shake 0.4s ease;
+}
+
+.auth-success-alert {
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #16a34a;
+    padding: 0.65rem 0.85rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+}
+
+/* User Profile Badge inside header */
+.header-profile-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: #f1f5f9;
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    font-size: 0.8rem;
+    color: var(--text-main);
+}
+
+.user-email-text {
+    font-weight: 700;
+    color: var(--primary-color);
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.btn-signout {
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    transition: var(--transition-fast);
+}
+
+.btn-signout:hover {
+    background-color: #fee2e2;
+}
+
+/* visual dashboard saved-resume-card hover styles */
+.saved-resume-card {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.saved-resume-card:hover {
+    border-color: var(--primary-light) !important;
+    background-color: var(--primary-bg) !important;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+.saved-resume-card.active {
+    border-color: var(--primary-light) !important;
+    background-color: var(--primary-bg) !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+.chevron-badge {
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-get-pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    height: auto;
+    border-radius: 4px;
+    background-color: #22c55e; /* Premium emerald green for download */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-get-pdf:hover {
+    background-color: #16a34a;
+    transform: scale(1.03);
+    box-shadow: 0 2px 4px rgba(34, 197, 94, 0.3);
+}
+
